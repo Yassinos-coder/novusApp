@@ -9,7 +9,7 @@ import SettingsScreen from '../Screens/SettingsScreen/SettingsScreen';
 
 const Tab = createBottomTabNavigator();
 
-const Routes = () => {
+const ProtectedScreens = () => {
   const [isSignedIn, setIsSignedIn] = useState(null); // State for handling sign-in status
 
   useEffect(() => {
@@ -42,4 +42,4 @@ const Routes = () => {
   );
 };
 
-export default Routes;
+export default ProtectedScreens;

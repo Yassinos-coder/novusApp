@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import * as Font from 'expo-font';
 import * as SecureStore from 'expo-secure-store';
-import Routes from './Utils/Routes';
+import ProtectedScreens from './Utils/ProtectedScreens';
 
 // Function to load fonts
 const fetchFonts = () => {
@@ -36,5 +36,5 @@ export default function App() {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
 
-  return <Routes />;
+  return <ProtectedScreens />;
 }
