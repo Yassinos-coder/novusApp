@@ -1,12 +1,8 @@
-// App.js
-import React, { useEffect } from 'react';
-import { Text, View, ActivityIndicator } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator } from 'react-native';
 import * as Font from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './Screens/Home/Home';
-
-const Stack = createNativeStackNavigator();
+import * as SecureStore from 'expo-secure-store';
+import Routes from './Utils/Routes';
 
 // Function to load fonts
 const fetchFonts = () => {
@@ -19,25 +15,26 @@ const fetchFonts = () => {
 };
 
 export default function App() {
-  const [fontsLoaded, setFontsLoaded] = React.useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
   useEffect(() => {
-    const loadFonts = async () => {
+    const initializeApp = async () => {
+      const isSignedIn = await SecureStore.getItemAsync('isSignedIn');
+      if (!isSignedIn) {
+        await SecureStore.setItemAsync('isSignedIn', 'false');
+      }
+      
+      // Load fonts after secure store handling
       await fetchFonts();
       setFontsLoaded(true);
     };
-    loadFonts();
+
+    initializeApp();
   }, []);
 
   if (!fontsLoaded) {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen component={Home} name='Home' />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  return <Routes />;
 }

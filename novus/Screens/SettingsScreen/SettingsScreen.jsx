@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Home = () => {
+const SettingsScreen = () => {
   return (
     <View>
-      <Text style={{fontFamily:'poppins-regular'}} >Home</Text>
+      <Text>SettingsScreen</Text>
     </View>
   )
 }
 
-export default Home
+export default SettingsScreen
