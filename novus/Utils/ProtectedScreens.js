@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as SecureStore from 'expo-secure-store';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 // Screens Import
 import HomeScreen from '../Screens/HomeScreen/HomeScreen';
@@ -22,19 +23,57 @@ const ProtectedScreens = () => {
   }, []);
 
   if (isSignedIn === null) {
-    // Return loading indicator while checking sign-in status
+    // Return null or a loading indicator while checking sign-in status
     return null;
   }
 
   return (
     <NavigationContainer>
       {isSignedIn ? (
-        <Tab.Navigator>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+
+              if (route.name === 'Home') {
+                iconName = focused
+                  ? 'home'
+                  : 'home';
+              } else if (route.name === 'Settings') {
+                iconName = focused ? 'home' : 'home';
+              }
+
+              // Return the appropriate icon
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: 'tomato',
+            tabBarInactiveTintColor: 'gray',
+          })}
+        >
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="Settings" component={SettingsScreen} />
         </Tab.Navigator>
       ) : (
-        <Tab.Navigator>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+
+              if (route.name === 'Home') {
+                iconName = focused
+                  ? 'home'
+                  : 'home';
+              } else if (route.name === 'Settings') {
+                iconName = focused ? 'home' : 'home';
+              }
+
+              // Return the appropriate icon
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: 'tomato',
+            tabBarInactiveTintColor: 'gray',
+          })}
+        >
           <Tab.Screen name="Home" component={HomeScreen} />
         </Tab.Navigator>
       )}
