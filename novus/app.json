@@ -6,6 +6,15 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "plugins": [
+      [
+        "react-native-auth0",
+        {
+          "domain": "dev-now7hblt0ihoun10.eu.auth0.com"
+        }
+      ]
+    ],
+    
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -17,7 +26,8 @@
         "NSCameraUsageDescription": "This app requires camera access to upload photos.",
         "NSPhotoLibraryUsageDescription": "This app needs access to your photo library for storing images.",
         "NSLocationWhenInUseUsageDescription": "This app needs access to your location to provide better service."
-      }
+      },
+      "bundleIdentifier": "com.novusbanking"
     },
     "android": {
       "permissions": [
@@ -31,7 +41,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.novusbanking"
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -20,6 +20,7 @@ const mongoose = require("mongoose");
 const rateLimit = require("express-rate-limit");
 const compression = require("compression");
 const hpp = require("hpp");
+const Routes = require('./Routes/Routes')
 
 // Initialize express app
 const app = express();
@@ -75,6 +76,8 @@ connectDB(); // Call the database connection function
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'UP' });
 });
+
+app.use('/api/v1', Routes);
 
 // Start the server
 const PORT = process.env.PORT || 8009; // Use environment variable for port

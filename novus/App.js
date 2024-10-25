@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import * as Font from 'expo-font';
 import * as SecureStore from 'expo-secure-store';
+import { Auth0Provider } from 'react-native-auth0';
 import ProtectedScreens from './Utils/ProtectedScreens';
+import { AuthConfig } from './auth0-configuration';
 
 // Function to load fonts
 const fetchFonts = () => {
@@ -23,8 +25,7 @@ export default function App() {
       if (!isSignedIn) {
         await SecureStore.setItemAsync('isSignedIn', 'false');
       }
-      
-      // Load fonts after secure store handling
+
       await fetchFonts();
       setFontsLoaded(true);
     };
@@ -36,5 +37,9 @@ export default function App() {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
 
-  return <ProtectedScreens />;
+  return (
+
+      <ProtectedScreens />
+    
+  );
 }

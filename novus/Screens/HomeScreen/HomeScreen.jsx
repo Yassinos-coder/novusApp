@@ -1,13 +1,16 @@
-import { View, Text, Pressable } from 'react-native'
-import React from 'react'
-import * as SecureStore from 'expo-secure-store'
+import React from 'react';
+import { View, Text } from 'react-native';
 
 const HomeScreen = () => {
-  return (
-    <View>
-      <Text style={{ fontFamily: 'poppins-regular' }} >HomeScreen</Text>
-    </View>
-  )
-}
 
-export default HomeScreen
+
+  return (
+    <View >
+      <Text >Home</Text>
+    </View>
+  );
+};
+
+
+
+export default HomeScreen;
