@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import * as Font from 'expo-font';
 import * as SecureStore from 'expo-secure-store';
-import { Auth0Provider } from 'react-native-auth0';
 import ProtectedScreens from './Utils/ProtectedScreens';
-import { AuthConfig } from './auth0-configuration';
+import { Auth0Provider } from 'react-native-auth0';
 
-// Function to load fonts
+
+// Load custom fonts
 const fetchFonts = () => {
   return Font.loadAsync({
     'poppins-regular': require('./assets/fonts/Poppins-Regular.ttf'),
@@ -38,8 +38,9 @@ export default function App() {
   }
 
   return (
-
+    <Auth0Provider domain={"dev-now7hblt0ihoun10.eu.auth0.com"} clientId={"pOXz7SugFq921eh0TUMIOGuqPLZ4hI12"}>
       <ProtectedScreens />
-    
+    </Auth0Provider>
+
   );
 }

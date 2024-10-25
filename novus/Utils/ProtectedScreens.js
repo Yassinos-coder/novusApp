@@ -8,8 +8,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import HomeScreen from '../Screens/HomeScreen/HomeScreen';
 import SettingsScreen from '../Screens/SettingsScreen/SettingsScreen';
 import LoginScreen from '../Screens/LoginScreen/LoginScreen';
-import { Auth0Provider } from 'react-native-auth0';
-import { AuthConfig } from '../auth0-configuration';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -31,63 +30,58 @@ const ProtectedScreens = () => {
   }
 
   return (
-    <Auth0Provider
-      domain={AuthConfig.domain}
-      clientId={AuthConfig.clientId}
-      redirectUri={`exp://192.168.3.13:8081/`}  // Ensure this is set correctly
-    >
-      <NavigationContainer>
-        {isSignedIn ? (
-          <Tab.Navigator
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ focused, color, size }) => {
-                let iconName;
 
-                if (route.name === 'Home') {
-                  iconName = focused
-                    ? 'home'
-                    : 'home';
-                } else if (route.name === 'Settings') {
-                  iconName = focused ? 'home' : 'home';
-                }
+    <NavigationContainer>
+      {isSignedIn ? (
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
 
-                // Return the appropriate icon
-                return <Ionicons name={iconName} size={size} color={color} />;
-              },
-              tabBarActiveTintColor: 'tomato',
-              tabBarInactiveTintColor: 'gray',
-            })}
-          >
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
-          </Tab.Navigator>
-        ) : (
-          <Tab.Navigator initialRouteName='Login'
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ focused, color, size }) => {
-                let iconName;
+              if (route.name === 'Home') {
+                iconName = focused
+                  ? 'home'
+                  : 'home';
+              } else if (route.name === 'Settings') {
+                iconName = focused ? 'home' : 'home';
+              }
 
-                if (route.name === 'Home') {
-                  iconName = focused
-                    ? 'home'
-                    : 'home';
-                } else if (route.name === 'Settings') {
-                  iconName = focused ? 'home' : 'home';
-                }
+              // Return the appropriate icon
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: 'tomato',
+            tabBarInactiveTintColor: 'gray',
+          })}
+        >
+          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="Settings" component={SettingsScreen} />
+        </Tab.Navigator>
+      ) : (
+        <Tab.Navigator initialRouteName='Login'
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
 
-                // Return the appropriate icon
-                return <Ionicons name={iconName} size={size} color={color} />;
-              },
-              tabBarActiveTintColor: 'tomato',
-              tabBarInactiveTintColor: 'gray',
-            })}
-          >
-            <Tab.Screen name="Login" component={LoginScreen} />
-          </Tab.Navigator>
-        )}
-      </NavigationContainer>
+              if (route.name === 'Home') {
+                iconName = focused
+                  ? 'home'
+                  : 'home';
+              } else if (route.name === 'Settings') {
+                iconName = focused ? 'home' : 'home';
+              }
 
-    </Auth0Provider>
+              // Return the appropriate icon
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: 'tomato',
+            tabBarInactiveTintColor: 'gray',
+          })}
+        >
+          <Tab.Screen name="Login" component={LoginScreen} />
+        </Tab.Navigator>
+      )}
+    </NavigationContainer>
+
   );
 };
 
